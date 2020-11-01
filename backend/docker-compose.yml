@@ -1,0 +1,53 @@
+version: '3.7'
+
+services:
+  instagram-backend:
+    container_name: instagram-backend
+    build:
+      context: ./
+      dockerfile: Dockerfile
+    env_file: .env
+    volumes:
+      - ./:/instagram-clone
+    ports:
+      - '$PORT_SERVER:$PORT_SERVER'
+    depends_on:
+      - instagram-db
+    restart: always
+    networks:
+      - postgres
+
+  instagram-db:
+    container_name: instagram-db
+    image: postgres:latest
+    env_file: .env
+    volumes:
+      - database-data:/var/lib/postgresql/data/ # persist data even if container shuts down
+    ports:
+      - '$PORT_DB:$PORT_DB'
+    restart: always
+    expose:
+      - '$PORT_DB'
+    networks:
+      - postgres
+
+  adminer:
+    container_name: 'adminer-postgres'
+    image: adminer
+    env_file: .env
+    ports:
+      - '$PORT_ADMINER:$PORT_ADMINER'
+    environment:
+      ADMINER_DEFAULT_SERVER: instagram-db
+      ADMINER_DESIGN: 'lucas-sandery' # theme
+    restart: always
+    depends_on:
+      - instagram-db
+    networks:
+      - postgres
+networks:
+  postgres:
+    driver: bridge
+
+volumes:
+  database-data: # named volumes can be managed easier using docker-compose
