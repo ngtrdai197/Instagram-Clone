@@ -16,7 +16,7 @@ type UserDto {
 }
 
 type Query {
-  getUser: String!
+  sayHi: String!
   getUserList: [UserDto!]!
 }
 
