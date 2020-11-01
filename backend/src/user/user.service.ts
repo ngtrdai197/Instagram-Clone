@@ -16,7 +16,6 @@ export class UserService extends BaseService {
   }
 
   async create(newUser: CreateUserDto) {
-    console.log('newUser :>> ', newUser);
     const handler = (queryRunner: QueryRunner) => {
       const { manager } = queryRunner;
       manager.save(User, { ...newUser });

@@ -10,6 +10,7 @@ async function bootstrap() {
 
   const configService = app.get(ConfigService);
   const PORT = configService.get<number>('PORT_SERVER');
+  
   await app.listen(PORT);
   Logger.log(
     `🚀  Server is listening on port ${chalk.hex('#87e8de').bold(`${PORT}`)}`,

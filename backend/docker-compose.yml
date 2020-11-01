@@ -22,7 +22,7 @@ services:
     image: postgres:latest
     env_file: .env
     volumes:
-      - database-data:/var/lib/postgresql/data/ # persist data even if container shuts down
+      - ./database-data/:/var/lib/postgresql/data/ # persist data even if container shuts down
     ports:
       - '$PORT_DB:$PORT_DB'
     restart: always
