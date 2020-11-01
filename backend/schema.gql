@@ -1,0 +1,32 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+type BaseResponseDto {
+  msg: String!
+  statusCode: Int!
+}
+
+type UserDto {
+  id: Int!
+  username: String!
+  email: String!
+  firstName: String!
+  lastName: String!
+}
+
+type Query {
+  getUser: String!
+  getUserList: [UserDto!]!
+}
+
+type Mutation {
+  createUser(newUser: CreateUserInput!): BaseResponseDto!
+}
+
+input CreateUserInput {
+  username: String!
+  email: String!
+  firstName: String!
+  lastName: String!
+}
