@@ -2,7 +2,7 @@ FROM node:14-alpine
 
 LABEL author="Dai Nguyen"
 
-WORKDIR /instagram-clone
+WORKDIR /backend
 
 COPY package*.json ./
 
